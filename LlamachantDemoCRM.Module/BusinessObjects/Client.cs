@@ -23,6 +23,15 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
         }
 
 
+        private string _Address;
+        [Size(250)]
+        public string Address
+        {
+            get { return _Address; }
+            set { SetPropertyValue<string>(nameof(Address), ref _Address, value); }
+        }
+
+
 
         [PersistentAlias($"[Invoices][].Sum({nameof(Invoice.Total)}) - ISNULL([Payments][].Sum({nameof(Payment.PaymentAmount)}), 0)")]     
         public decimal Balance
@@ -55,11 +64,29 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
         }
 
 
+        private TaxRate _TaxRate;
+        public TaxRate TaxRate
+        {
+            get { return _TaxRate; }
+            set { SetPropertyValue<TaxRate>(nameof(TaxRate), ref _TaxRate, value); }
+        }
+
+
+
+
         [DevExpress.Xpo.Aggregated, Association]
         public XPCollection<Contact> Contacts
         {
             get { return GetCollection<Contact>(nameof(Contacts)); }
         }
+
+
+        [DevExpress.Xpo.Aggregated, Association]
+        public XPCollection<BillableHours> BillableHours
+        {
+            get { return GetCollection<BillableHours>(nameof(BillableHours)); }
+        }
+
 
 
         [DevExpress.Xpo.Aggregated, Association]

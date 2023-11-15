@@ -1,8 +1,72 @@
-﻿<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="LlamachantDemoCRM">
+  <NavigationItems>
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="Client_ListView" Index="5" Caption="Clients" />
+          <Item Id="Contact_ListView" Index="10" Caption="Contacts" />
+          <Item Id="Invoices" ViewId="Invoice_ListView" Caption="Invoices" Index="15" IsNewNode="True" />
+          <Item Id="BillableHours" ViewId="BillableHours_ListView" Index="20" IsNewNode="True" />
+          <Item Id="Event_ListView" Removed="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
+  <SchemaModules>
+    <SchemaModule Name="SchedulerModuleBase" Version="23.1.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="23.1.6.0" IsNewNode="True" />
+  </SchemaModules>
   <Views>
+    <DetailView Id="BillableHours_DetailView">
+      <Items>
+        <PropertyEditor Id="Client" PropertyName="Client" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="13.847675568743819">
+            <LayoutGroup Id="BillableHours" Caption="BillableHours" RelativeSize="100" Direction="Horizontal">
+              <LayoutGroup Id="Auto25a7ea51-fcfb-4dce-ad85-313f033dbf8b" ShowCaption="False" Caption="Auto25a7ea51-fcfb-4dce-ad85-313f033dbf8b(4)" Index="0" RelativeSize="49.83277591973244" IsNewNode="True">
+                <LayoutItem Id="StartOn" ViewItem="StartOn" Index="0" RelativeSize="35.714285714285715" IsNewNode="True" />
+                <LayoutItem Id="EndOn" ViewItem="EndOn" Index="1" RelativeSize="30" IsNewNode="True" />
+                <LayoutItem Id="Duration" ViewItem="Duration" Index="2" RelativeSize="34.285714285714285" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Auto8965835a-0f6a-47b2-a2d1-e214173878aa" ShowCaption="False" Caption="Auto8965835a-0f6a-47b2-a2d1-e214173878aa(7)" Index="1" RelativeSize="50.16722408026756" IsNewNode="True">
+                <LayoutItem Id="Client" ViewItem="Client" Index="0" RelativeSize="35.714285714285715" IsNewNode="True" />
+                <LayoutItem Id="Invoice" ViewItem="Invoice" Index="1" RelativeSize="64.28571428571429" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="Duration" Removed="True" />
+              <LayoutItem Id="Invoice" RelativeSize="48.97959183673469" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Event" RelativeSize="69.93865030674847" Removed="True">
+              <LayoutGroup Id="Event_col1" RelativeSize="49.966009517335145">
+                <LayoutItem Id="AllDay" Index="1" RelativeSize="72.82608695652173" />
+                <LayoutItem Id="EndOn" Index="1" RelativeSize="22.82608695652174" Removed="True" />
+                <LayoutItem Id="StartOn" Removed="True" />
+                <LayoutItem Id="Subject" RelativeSize="27.17391304347826" />
+              </LayoutGroup>
+              <LayoutGroup Id="Event_col2" RelativeSize="50.033990482664855">
+                <LayoutItem Id="Label" RelativeSize="22.82608695652174" />
+                <LayoutItem Id="Location" RelativeSize="27.17391304347826" />
+                <LayoutItem Id="RecurrencePattern" RelativeSize="27.17391304347826" />
+                <LayoutItem Id="Status" RelativeSize="22.82608695652174" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" RelativeSize="86.15232443125618" Caption="SizeableEditors" Direction="Vertical">
+            <LayoutItem Id="BillableHoursDescription" RelativeSize="49.94259471871412" CaptionLocation="Top" />
+            <LayoutItem Id="RecurrenceInfoXml" RelativeSize="66.66666666666667" Index="1" Removed="True" />
+            <LayoutItem Id="Resources" ViewItem="Resources" Index="1" RelativeSize="50.05740528128588" ShowCaption="True" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Description" RelativeSize="33.1140350877193" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Resources_Group" Direction="Horizontal" RelativeSize="45.202769535113745" Caption="Resources" Removed="True">
+            <LayoutItem Id="Resources" RelativeSize="100" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
   </Views>
 </Application>

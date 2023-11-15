@@ -26,6 +26,24 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
         }
 
 
+        private PaymentMethod _PaymentMethod;
+        public PaymentMethod PaymentMethod
+        {
+            get { return _PaymentMethod; }
+            set { SetPropertyValue<PaymentMethod>(nameof(PaymentMethod), ref _PaymentMethod, value); }
+        }
+
+
+        private string _TransactionID;
+        public string TransactionID
+        {
+            get { return _TransactionID; }
+            set { SetPropertyValue<string>(nameof(TransactionID), ref _TransactionID, value); }
+        }
+
+
+
+
         private decimal _PaymentAmount;
         public decimal PaymentAmount
         {
