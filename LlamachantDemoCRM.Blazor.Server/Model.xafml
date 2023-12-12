@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <NavigationItems NavigationStyle="Accordion">
-  </NavigationItems>
+  <NavigationItems NavigationStyle="Accordion" />
+  <SchemaModules>
+    <SchemaModule Name="SchedulerModuleBase" Version="23.1.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="23.1.6.0" IsNewNode="True" />
+  </SchemaModules>
   <Views DefaultListEditor="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor">
+    <ListView Id="BillableHours_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Client_BillableHours_ListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Invoice_BillableHours_ListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
   </Views>
 </Application>

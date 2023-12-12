@@ -1,4 +1,5 @@
-﻿using DevExpress.ExpressApp.Model;
+﻿using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace LlamachantDemoCRM.Module.BusinessObjects
 {
+    [Appearance("DenyEditOnBasedOnHours", AppearanceItemType = "ViewItem", Enabled = false, Criteria = "Item.BasedOnHours = TRUE", TargetItems = "Quantity")]
     public class InvoiceLineItem : BaseObject
     {
         public InvoiceLineItem(Session session) : base(session) { }
@@ -19,16 +21,31 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
         public Item Item
         {
             get { return _Item; }
-            set { SetPropertyValue<Item>(nameof(Item), ref _Item, value); }
+            set 
+            { 
+                SetPropertyValue<Item>(nameof(Item), ref _Item, value);
+
+                if (!IsLoading && !IsSaving && Price == 0)
+                    Price = value.DefaultPrice;
+            }
         }
 
+
+        //private decimal _Quantity;
+        //[ModelDefault("EditMask", "n2")]
+        //[ModelDefault("DisplayFormat", "{0:n2}")]
+        //public decimal Quantity
+        //{
+        //    get { return _Quantity; }
+        //    set { SetPropertyValue<decimal>(nameof(Quantity), ref _Quantity, value); }
+        //}
 
         private decimal _Quantity;
         [ModelDefault("EditMask", "n2")]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         public decimal Quantity
         {
-            get { return _Quantity; }
+            get { return IsSaving || IsLoading ? _Quantity : (Convert.ToBoolean(Item?.BasedOnHours) ? Convert.ToDecimal(Evaluate("Invoice.BillableHours.Sum(Duration)")) : _Quantity); }
             set { SetPropertyValue<decimal>(nameof(Quantity), ref _Quantity, value); }
         }
 

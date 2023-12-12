@@ -1,11 +1,13 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
+using System.ComponentModel;
 
 namespace LlamachantDemoCRM.Module.BusinessObjects
 {
     [VisibleInReports(true)]
     [VisibleInDashboards(true)]
+    [DefaultProperty(nameof(Description))]
     public class Invoice : BaseObject
     {
         public Invoice(Session session) : base(session) { }
@@ -16,6 +18,8 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
 
             InvoiceDate = DateTime.Today;
         }
+
+        public string Description => ObjectFormatter.Format("{Client.Name} - {InvoiceDate:d} - {Total:c2}", this, EmptyEntriesMode.RemoveDelimiterWhenEntryIsEmpty);
 
         private Client _Client;
         [Association]
@@ -49,18 +53,27 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
         }
 
 
-        [PersistentAlias("[SubTotal] * 1.13")]
+        [PersistentAlias("[SubTotal] * iif(ISNULL(Client.TaxRate), 1, 1 + Client.TaxRate.Rate)")]
         public decimal Total
         {
             get { return Convert.ToDecimal(EvaluateAlias(nameof(Total))); }
         }
 
+        //public decimal Total => SubTotal * (Client?.TaxRate == null ? 1 : 1 + Client.TaxRate.Rate);
 
 
         [DevExpress.Xpo.Aggregated, Association]
         public XPCollection<InvoiceLineItem> InvoiceLineItems
         {
             get { return GetCollection<InvoiceLineItem>(nameof(InvoiceLineItems)); }
+        }
+
+
+        [Association]
+        [DataSourceCriteria("Client = '@This.Client' AND ISNULL(Invoice)")]
+        public XPCollection<BillableHours> BillableHours
+        {
+            get { return GetCollection<BillableHours>(nameof(BillableHours)); }
         }
 
     }
