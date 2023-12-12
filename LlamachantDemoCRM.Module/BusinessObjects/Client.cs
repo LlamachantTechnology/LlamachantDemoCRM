@@ -24,7 +24,7 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
 
 
 
-        [PersistentAlias($"[Invoices][].Sum({nameof(Invoice.Total)}) - ISNULL([Payments][].Sum({nameof(Payment.PaymentAmount)}), 0)")]     
+        [PersistentAlias($"ISNULL([Invoices][].Sum({nameof(Invoice.Total)}), 0) - ISNULL([Payments][].Sum({nameof(Payment.PaymentAmount)}), 0)")]     
         public decimal Balance
         {
             get { return Convert.ToDecimal(EvaluateAlias(nameof(Balance))); }
