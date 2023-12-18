@@ -1,4 +1,5 @@
-﻿using DevExpress.Persistent.Base;
+﻿using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System;
@@ -11,6 +12,7 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
 {
 
     [DefaultClassOptions]
+    [Appearance("Client-UseCustomRate", "[UseCustomRate] = False", TargetItems = "CustomRate", Enabled = false, Context = "DetailView")]
     public class Client : BaseObject
     {
         public Client(Session session) : base(session) { }
@@ -69,6 +71,22 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
         {
             get { return _TaxRate; }
             set { SetPropertyValue<TaxRate>(nameof(TaxRate), ref _TaxRate, value); }
+        }
+
+
+        private bool _UseCustomRate;
+        [ImmediatePostData]
+        public bool UseCustomRate
+        {
+            get { return _UseCustomRate; }
+            set { SetPropertyValue<bool>(nameof(UseCustomRate), ref _UseCustomRate, value); }
+        }
+
+        private decimal _CustomRate;
+        public decimal CustomRate
+        {
+            get { return _CustomRate; }
+            set { SetPropertyValue<decimal>(nameof(CustomRate), ref _CustomRate, value); }
         }
 
 

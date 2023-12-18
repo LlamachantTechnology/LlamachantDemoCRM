@@ -8,6 +8,47 @@
   <Views DefaultListEditor="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor">
     <ListView Id="BillableHours_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
     <ListView Id="Client_BillableHours_ListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <DetailView Id="Client_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="22.751729438893157">
+            <LayoutGroup Id="Client" RelativeSize="100">
+              <LayoutGroup Id="Client_col1" RelativeSize="49.96237772761475">
+                <LayoutItem Id="Name" ViewItem="Name" Index="0" RelativeSize="22.033898305084747" IsNewNode="True" Removed="True" />
+                <LayoutItem Id="Address" Index="1" RelativeSize="18.64406779661017" />
+                <LayoutItem Id="Balance" Index="2" RelativeSize="18.64406779661017" />
+                <LayoutItem Id="EmailAddress" Index="3" RelativeSize="18.64406779661017" />
+                <LayoutItem Id="PhoneNumber" Index="4" RelativeSize="22.033898305084747" />
+              </LayoutGroup>
+              <LayoutGroup Id="Client_col2" RelativeSize="50.03762227238525">
+                <LayoutItem Id="Website" RelativeSize="22.033898305084747" />
+                <LayoutItem Id="TaxRate" RelativeSize="18.64406779661017" />
+                <LayoutItem Id="UseCustomRate" RelativeSize="18.64406779661017" />
+                <LayoutGroup Id="Auto3f595744-a237-441d-8147-6a2b9e2c12fb" ShowCaption="False" Caption="" Direction="Horizontal" Index="3" RelativeSize="40.67796610169491" IsNewNode="True">
+                  <LayoutItem Id="CustomRate" ViewItem="CustomRate" Index="0" RelativeSize="49.92481203007519" IsNewNode="True" />
+                  <LayoutItem Id="Item1" Index="1" RelativeSize="50.07518796992481" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="CustomRate" Index="3" RelativeSize="40.67796610169491" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" RelativeSize="77.24827056110684">
+            <LayoutGroup Id="Contacts" RelativeSize="100">
+              <LayoutItem Id="Contacts" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="BillableHours" RelativeSize="100">
+              <LayoutItem Id="BillableHours" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="Invoices" RelativeSize="100">
+              <LayoutItem Id="Invoices" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="Payments" RelativeSize="100">
+              <LayoutItem Id="Payments" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="Invoice_BillableHours_ListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
   </Views>
 </Application>
