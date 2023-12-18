@@ -25,6 +25,9 @@ public class Startup {
         services.AddServerSideBlazor();
         services.AddHttpContextAccessor();
         services.AddScoped<CircuitHandler, CircuitHandlerProxy>();
+
+        services.AddScoped<BrowserService>();
+
         services.AddXaf(Configuration, builder => {
             builder.UseApplication<LlamachantDemoCRMBlazorApplication>();
             builder.Modules
