@@ -1,8 +1,10 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
+using LlamachantDemoCRM.Module.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
 {
 
     [DefaultClassOptions]
-    public class Client : BaseObject
+    public class Client : BaseObject, IHaveClient
     {
         public Client(Session session) : base(session) { }
 
@@ -102,7 +104,7 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
             get { return GetCollection<Payment>(nameof(Payments)); }
         }
 
-
+        Client IHaveClient.Client => this;
     }
 
 

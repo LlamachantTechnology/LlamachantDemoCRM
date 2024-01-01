@@ -1,6 +1,7 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
+using LlamachantDemoCRM.Module.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
 {
 
     [DefaultClassOptions]
-    public class Contact : BaseObject
+    public class Contact : BaseObject, IHaveClient
     {
         public Contact(Session session) : base(session) { }
 
@@ -55,7 +56,5 @@ namespace LlamachantDemoCRM.Module.BusinessObjects
             get { return _Client; }
             set { SetPropertyValue<Client>(nameof(Client), ref _Client, value); }
         }
-
-
     }
 }
